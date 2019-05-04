@@ -1,0 +1,30 @@
+<aura:component >
+    <aura:attribute name="typeofService" type="String"/>
+    <aura:attribute name="country" type="String"/>
+    <aura:attribute name="cost" type="String"/>
+    <aura:attribute name="specialPackage" type="String"/>
+    <aura:attribute name="addanothercss" type="Boolean" default="false"/>
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+  <thead>
+    <tr class="slds-line-height_reset">
+      <th  scope="col">
+          <div class="{!v.addanothercss ? 'addwidthCustom':'CustomWidth'}" title="{!v.typeofService}"><b>{!v.typeofService}</b></div>
+      </th>
+      <th  >
+        <div title="{!v.country}">{!v.country}</div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="slds-hint-parent">
+      <td >
+        <div class="slds-truncate" title="{!v.specialPackage}">{!v.specialPackage}</div>
+      </td>
+      <td >
+        <div class="slds-truncate" title="{!v.cost}">{!v.cost}</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</aura:component>

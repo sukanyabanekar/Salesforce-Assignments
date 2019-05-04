@@ -1,0 +1,46 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="ProductInformationController">
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="costCalendarList" type="List"/>
+    <aura:attribute name="ATMFeesList" type="List"/>
+    <aura:attribute name="CostReplList" type="List"/>
+    <aura:attribute name="noinfometadata" type="Boolean"/>
+    <aura:attribute name="noContactAssociate" type="Boolean"/>
+    <aura:if isTrue="{!and(!v.noContactAssociate,!v.noinfometadata)}">
+        <aura:iteration var="calendar" items="{!v.costCalendarList}">
+            <c:ProductInformationTableComponent typeofService="Cost per Calendar Month"
+                                                country="{!calendar.country}"
+                                                cost="{!calendar.cost}"
+                                                specialPackage = "{!calendar.category}"/>
+        </aura:iteration>
+        <br/>
+        <br/>
+        <aura:iteration var="ATM" items="{!v.ATMFeesList}">
+            <c:ProductInformationTableComponent typeofService="ATM Fee in other currencies"
+                                                country="{!ATM.country}"
+                                                cost="{!ATM.cost}"
+                                                specialPackage = "{!ATM.category}"
+                                                addanothercss="true"/>
+        </aura:iteration>
+        <br/>
+        <br/>
+        <aura:iteration var="Replace" items="{!v.CostReplList}">
+            <c:ProductInformationTableComponent typeofService="Card Replacement Cost"
+                                                country="{!Replace.country}"
+                                                cost="{!Replace.cost}"
+                                                specialPackage = "{!Replace.category}"/>
+        </aura:iteration>
+        <aura:set attribute="else">
+            <aura:if isTrue="{!v.noContactAssociate}">
+                <ui:message title="Warning" severity="warning" closable="true">
+                    No Contact asoociated with Case.
+                </ui:message>
+                <aura:set  attribute="else">
+                    <ui:message title="Warning" severity="warning" closable="true">
+                        Please contact system admin as the product Information is not set.
+                    </ui:message>    
+                </aura:set>
+            </aura:if>
+        </aura:set>
+    </aura:if>
+</aura:component>
