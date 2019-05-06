@@ -4,12 +4,12 @@ This repository have 2 sub folders as below:
   
 Each subfolder contains the components that are expected to complete the assignement
 
-Use Case 1:
+<b>Use Case 1:</b>
 To run the batch user need to run following code in execute anonymous:
 
 SurveyDateEmailBatch batch = new SurveyDateEmailBatch();
 Database.executeBatch(batch,10);
+<br/>
 
-
-Use case 2:
+<b>Use case 2:</b>
 The lightning component added on Case Record Page.
